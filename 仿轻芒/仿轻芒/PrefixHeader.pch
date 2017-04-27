@@ -1,0 +1,72 @@
+//
+//  PrefixHeader.pch
+//  仿轻芒
+//
+//  Created by 唐天成 on 2017/4/16.
+//  Copyright © 2017年 唐天成. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import "MJRefresh.h"
+#import "MyViewController1.h"
+#import "MyViewController2.h"
+#import "MyViewController3.h"
+#import "MyViewController4.h"
+#import "MyViewController5.h"
+#import "UIColor+XPKit.h"
+#import "UIView+FrameExpand.h"
+#import "RecordCurrentDragingManager.h"
+#import "RACEXTScope.h"
+#import "Masonry.h"
+
+#define NavigationTitleViewHeight 64  //顶部titleScrollView的高度
+#define HomeHeadHeight (116 * KWIDTH_IPHONE6_SCALE)  //中部titleScrollView的高度
+#define BaseHomeTableViewHeight   (SCREEN_HEIGHT - NavigationTitleViewHeight )  //首页tabelView的基础高度
+
+
+#define NaviHeight 64
+
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define KWIDTH_IPHONE6_SCALE      ([UIScreen mainScreen].bounds.size.width/375.0f)
+#define KHEIGHT_IPHONE6_SCALE     ([UIScreen mainScreen].bounds.size.height/667.0f)
+
+//RGB 色值 以及 alpha值
+#define RGBA(r, g, b,a)     [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define RGB(r, g, b)        [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+
+// RGB 颜色转换（16进制->10进制）
+#define RGB_VALUE(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+//重写Debug模式下打印日
+#ifdef DEBUG
+//#define DebugLog(...) NSLog(__VA_ARGS__)
+#define DebugLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#define DebugMethod() NSLog(@"%s", __func__)
+#else
+#define DebugLog(...)
+#define DebugMethod()
+#endif
+
+//弱引用
+#define weakSelf(weakSelf) __weak __typeof(&*self)weakSelf = self;
+
+//灰色文字
+#define grayTextColor RGBA(102, 102, 102, 1)
+//黑色文字
+#define blackTextColor RGBA(0, 0, 0, 1)
+//灰色线条颜色(RGB(221,221,221)浅)
+#define gray221LineColor RGBA(221, 221, 221, 1)
+//灰色线条颜色(RGB(194,194,194)深)
+#define gray194LineColor RGBA(194, 194, 194, 1)
+//红色文字
+#define redTextColor RGBA(166, 14, 13, 1)
+
+
+
+#endif /* PrefixHeader_pch */
